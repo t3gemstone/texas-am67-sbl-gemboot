@@ -1,0 +1,9 @@
+{
+  "compilation": {
+    "compilers_to_recognize": [
+      {
+        "executable": "tisdk/ti-cgt-armllvm_3.2.2.LTS/bin/tiarmclang"
+      }
+    ]
+  }
+}

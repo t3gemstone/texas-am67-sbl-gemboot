@@ -1,0 +1,13 @@
+j722s-evm/wkup-r5fss0-0_nortos/ti-arm-clang/generated
+j722s-evm/wkup-r5fss0-0_nortos/ti-arm-clang/obj
+compile_commands.json
+*.bin
+*.tiimage
+*.map
+*.img
+*.out
+.cache
+downloads
+tisdk
+build
+obj
