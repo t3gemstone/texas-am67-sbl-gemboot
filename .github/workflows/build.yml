@@ -1,7 +1,6 @@
 name: Build texas-am67-sbl-gemboot
 
-on:
-  workflow_dispatch:
+on: push
 
 jobs:
   build:
