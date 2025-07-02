@@ -52,6 +52,7 @@
 #include <drivers/bootloader/bootloader_buf_io.h>
 #include <drivers/gpio.h>
 #include <stdbool.h>
+void *AddrTranslateP_getLocalAddr(uint64_t systemAddr);
 
 #define BOOTLOADER_UART_STATUS_LOAD_SUCCESS           (0x53554343) /* SUCC */
 #define BOOTLOADER_UART_STATUS_LOAD_CPU_FAIL          (0x4641494C) /* FAIL */
