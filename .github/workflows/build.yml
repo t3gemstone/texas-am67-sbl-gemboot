@@ -1,6 +1,9 @@
 name: Build texas-am67-sbl-gemboot
 
-on: push
+on: 
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
