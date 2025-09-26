@@ -68,7 +68,6 @@ uart1.UART.$assign               = "USART0";
 
 debug_log.enableUartLog                      = true;
 debug_log.uartLog.useWakeupDomainPeripherals = false;
-debug_log.uartLog.baudRate                   = 3000000;
 debug_log.uartLog.$name                      = "LOG_UART";
 debug_log.uartLog.UART.$assign               = "USART1";
 debug_log.uartLog.UART.RXD.$assign           = "MCASP0_AFSR";

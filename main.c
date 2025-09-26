@@ -232,7 +232,7 @@ void Report_Process_Result(int32_t result)
     static uint8_t const success[] = { 0xDE, 0xDE, 0xDE, 0xD1 };
     static uint8_t const failure[] = { 0xBA, 0xBA, 0xDE, 0xD1 };
 
-    switch (state) 
+    switch (state)
     {
         case SystemP_SUCCESS:
             Bootloader_xmodemTransmit(COMM_UART, (uint8_t*)success, sizeof success);
@@ -286,7 +286,7 @@ int main()
             switch (phase) {
                 case BOOTLOADER_PHASE_LINUX_APPIMAGE:
                 {
-                    DebugP_log("Waiting for the transfer of the file linux.appimage.hs_fs... (Method: XMODEM, BAUD: 3000000)\r\n");
+                    DebugP_log("Waiting for the transfer of the file linux.appimage.hs_fs... (Method: XMODEM, BAUD: 921600)\r\n");
                     bufStart = gAppImageBuf + BOOTLOADER_APPIMAGE_MAX_FILE_SIZE;
                     status = Bootloader_xmodemReceive(COMM_UART, bufStart, BOOTLOADER_APPIMAGE_MAX_FILE_SIZE, &fileSize);
                     if(SystemP_SUCCESS == status && fileSize == BOOTLOADER_APPIMAGE_MAX_FILE_SIZE)
@@ -304,14 +304,14 @@ int main()
                             DebugP_log("The download of linux.appimage.hs_fs failed\r\n");
                             Report_Process_Result(SystemP_FAILURE);
                         }
-                        else 
+                        else
                         {
                             DebugP_log("The download of linux.appimage.hs_fs was successful.\r\n");
                             phase = BOOTLOADER_PHASE_UBOOT_IMAGE;
                             Report_Process_Result(SystemP_SUCCESS);
                         }
                     }
-                    else 
+                    else
                     {
                         DebugP_log("XMODEM reception of linux.appimage.hs_fs failed!\r\n");
                         Report_Process_Result(SystemP_FAILURE);
@@ -319,7 +319,7 @@ int main()
                 } break;
                 case BOOTLOADER_PHASE_UBOOT_IMAGE:
                 {
-                    DebugP_log("Waiting for the transfer of the file u-boot.img... (Method: XMODEM, BAUD: 3000000)\r\n");
+                    DebugP_log("Waiting for the transfer of the file u-boot.img... (Method: XMODEM, BAUD: 921600)\r\n");
                     bufStart = gAppImageBuf;
                     status = Bootloader_xmodemReceive(COMM_UART, bufStart, BOOTLOADER_APPIMAGE_MAX_FILE_SIZE, &fileSize);
                     if(SystemP_SUCCESS == status && fileSize == BOOTLOADER_APPIMAGE_MAX_FILE_SIZE)
@@ -342,13 +342,13 @@ int main()
                         Report_Process_Result(SystemP_SUCCESS);
                         phase = BOOTLOADER_PHASE_COMPLETED;
                     }
-                    else 
+                    else
                     {
                         DebugP_log("XMODEM reception of u-boot.img failed.\r\n");
                         Report_Process_Result(SystemP_FAILURE);
                     }
                 } break;
-                
+
                 case BOOTLOADER_PHASE_COMPLETED:
                 {
                     DebugP_log("Core A53SS0_0 is starting...\r\n");
@@ -356,13 +356,13 @@ int main()
 
                     Set_Uboot_Spl_Bootmode(K3_RAM_BOOTMODE);
                     status = Bootloader_runCpu(bootHandle, &bootCpuInfo[CSL_CORE_ID_A53SS0_0]);
-    
+
                     if (SystemP_SUCCESS != status)
                     {
                         DebugP_log("Core A53SS0_0 could not be started!\r\n");
                         Report_Process_Result(SystemP_FAILURE);
                     }
-                    else 
+                    else
                     {
                         DebugP_log("Core A53SS0_0 has been started!\r\n");
                         Report_Process_Result(SystemP_SUCCESS);
