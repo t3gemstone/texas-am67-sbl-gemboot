@@ -36,6 +36,9 @@ extern "C" {
 #endif
 
 /*
+ * DDR Configuration file
+ * DDR: FORESEE_FLXC4004G-W6
+ *
  * This file was generated with the following tool revisions:
  *     - SysConfig: Revision 1.25.0+4268
  *     - Jacinto7_DDRSS_RegConfigTool: Revision 0.12.0
