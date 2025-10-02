@@ -10,7 +10,7 @@
     </applicability>
 
     <project
-        title="Texas AM67 Gemboot"
+        title="Texas AM67 SBL Gemboot"
         name = "texas-am67-sbl-gemboot"
         products="sysconfig;com.ti.MCU_PLUS_SDK_J722S"
         configurations="

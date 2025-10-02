@@ -1,6 +1,6 @@
 name: Build texas-am67-sbl-gemboot
 
-on: 
+on:
   push:
     tags:
       - '*'
@@ -12,22 +12,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
       - name: Install taskfile for build project
         run: |
             mkdir "${GITHUB_WORKSPACE}/bin"
             sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b "${GITHUB_WORKSPACE}/bin"
-
       - name: Install SDK
         run: |
             "${GITHUB_WORKSPACE}/bin/task" install-sdk
-      
       - name: Build project
         run: |
             "${GITHUB_WORKSPACE}/bin/task" build
-      
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: gemimager-tiboot3-t3-gem-o1
-          path: ${{ github.workspace }}/build/tiboot3.bin
+          name: texas_am67_sbl_gemboot.release.hs_fs.tiimage
+          path: ${{ github.workspace }}/build/texas_am67_sbl_gemboot.release.hs_fs.tiimage
